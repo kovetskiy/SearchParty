@@ -89,20 +89,9 @@ endfunction
 
 augroup SearchPartySearching
   au!
-  au VimEnter * call SPInitialiseSearchMaps()
   au BufEnter * let b:searching = 0
   au CursorHold * call SPAfterSearch()
 augroup END
-
-function! SPInitialiseSearchMaps()
-  if exists(':ShowSearchIndex')
-    nnoremap / :call searchparty#mash#unmash()<bar>let b:searching=1<bar>ShowSearchIndex<cr>/
-    nnoremap ? :call searchparty#mash#unmash()<bar>let b:searching=1<bar>ShowSearchIndex<cr>?
-  else
-    nnoremap / :call searchparty#mash#unmash()<bar>let b:searching=1<cr>/
-    nnoremap ? :call searchparty#mash#unmash()<bar>let b:searching=1<cr>?
-  endif
-endfunction
 
 
 
