@@ -38,32 +38,16 @@ let g:loaded_SearchParty = 1
 nnoremap <silent> <Plug>SearchPartyFindLiteralFwd
       \ :<C-U>call searchparty#literal_search#find_literal(1)<CR>
 
-if !hasmapto('<Plug>SearchPartyFindLiteralFwd')
-  nmap <unique> <silent> <leader>/ <Plug>SearchPartyFindLiteralFwd
-endif
-
 nnoremap <silent> <Plug>SearchPartyFindLiteralBkwd
       \ :<C-U>call searchparty#literal_search#find_literal(0)<CR>
-
-if !hasmapto('<Plug>SearchPartyFindLiteralBkwd')
-  nmap <unique> <silent> <leader>? <Plug>SearchPartyFindLiteralBkwd
-endif
 
 " SearchParty Arbitrary Matches {{{1
 
 nnoremap <Plug>SearchPartySetMatch
       \ :call searchparty#arbitrary_matches#match()<cr>
 
-if !hasmapto('<Plug>SearchPartySetMatch')
-  nmap <unique> <leader>mm <Plug>SearchPartySetMatch<CR>
-endif
-
 nnoremap <Plug>SearchPartyDeleteMatch
       \ :call searchparty#arbitrary_matches#match_delete()<CR>
-
-if !hasmapto('<Plug>SearchPartyDeleteMatch')
-  nmap <unique> <leader>md <Plug>SearchPartyDeleteMatch
-endif
 
 command! -bar -nargs=0 SearchPartyMatchList
       \ call searchparty#arbitrary_matches#match_list()
@@ -126,10 +110,6 @@ nnoremap <silent> <Plug>SearchPartyMashFOWToggle
       \ :let b:mash_use_fow = b:mash_use_fow ? 0 : 1<CR>
       \:call searchparty#mash#mash()<CR>
 
-if !hasmapto('<Plug>SearchPartyMashFOWToggle')
-  nmap <unique> <leader>mf <Plug>SearchPartyMashFOWToggle
-endif
-
 " backwards compatible to my deprecated vim-MASH plugin
 nmap <silent> <Plug>MashFOWToggle  <Plug>SearchPartyMashFOWToggle
 
@@ -138,20 +118,12 @@ nmap <silent> <Plug>MashFOWToggle  <Plug>SearchPartyMashFOWToggle
 nnoremap <Plug>SearchPartyMultipleReplace
       \ :call searchparty#multiple_replacements#multiply_replace()<CR>
 
-if !hasmapto('<Plug>SearchPartyMultipleReplace')
-  nmap <unique> <silent> <leader>mp <Plug>SearchPartyMultipleReplace
-endif
-
 " Search Highlighting {{{1
 "--------------------
 " Temporarily clear highlighting
 nnoremap <Plug>SearchPartyHighlightClear
       \ :let b:mash_use_fow = 0<cr>
       \:call searchparty#mash#unmash()<bar>:noh<cr>
-
-if !hasmapto('<Plug>SearchPartyHighlightClear')
-  nmap <unique> <silent> <c-l> <c-l><Plug>SearchPartyHighlightClear
-endif
 
 " Toggle search highlighting
 nnoremap <Plug>SearchPartyHighlightToggle :set invhlsearch hlsearch?<cr>
@@ -180,18 +152,10 @@ endif
 nnoremap <Plug>SearchPartyHighlightWORD
       \ :let @/=expand('<cWORD>')<bar>set hlsearch<cr>
 
-if !hasmapto('<Plug>SearchPartyHighlightWORD')
-  nmap <unique> <silent> <leader>g* <Plug>SearchPartyHighlightWORD
-endif
-
 " Manual Search Term from input
 " -----------------------------
 nnoremap <Plug>SearchPartySetSearch
       \ :let @/=input("set search: ")<bar>set hlsearch<cr>
-
-if !hasmapto('<Plug>SearchPartySetSearch')
-  nmap <unique> <silent> <leader>ms <Plug>SearchPartySetSearch
-endif
 
 " Visual Search & Replace
 " -----------------------
@@ -222,10 +186,6 @@ endif
 nnoremap <Plug>SearchPartyToggleAutoHighlightWord
       \ :call searchparty#search_highlights#toggle_AHCW()<CR>
 
-if !hasmapto('<Plug>SearchPartyToggleAutoHighlightWord')
-  nmap <unique> <silent> <leader>mah <Plug>SearchPartyToggleAutoHighlightWord
-endif
-
 " PrintWithHighlighting {{{1
 
 command! -range=% -nargs=* P
@@ -235,14 +195,6 @@ command! -range=% -nargs=* P
 
 noremap <Plug>SearchPartySearchHighlightReplace
       \ :call searchparty#search_highlights#replace()<CR>
-
-if !hasmapto('<Plug>SearchPartySearchHighlightReplace', 'n')
-  nmap <unique> <silent> <leader>mar <Plug>SearchPartySearchHighlightReplace
-endif
-
-if !hasmapto('<Plug>SearchPartySearchHighlightReplace', 'v')
-  xmap <unique> <silent> <leader>mar <Plug>SearchPartySearchHighlightReplace
-endif
 
 command! -range=% -nargs=0 SearchHighlightReplace
       \ <line1>,<line2>call searchparty#search_highlights#replace()
